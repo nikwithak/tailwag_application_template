@@ -11,3 +11,17 @@ sqlx = "0.7.1"
 tailwag = "0.2.0"
 tokio = { version = "1.41.0", features = ["full"] }
 uuid = { version = "1.11.0", features = ["v4"] }
+
+
+### PATCH TO LOCAL:
+# Uncomment this block to use a local development version of tailwag instead of the published version.
+#
+# [patch.crates-io]
+# tailwag = { path = "../tailwag/" }
+
+
+### PATCH TO GIT:
+# Uncomment this block to use the current development branch of tailwag instead of the published version.
+#
+# [patch.crates-io]
+# tailwag = { git = "https://github.com/nikwithak/tailwag", branch = "develop" }
