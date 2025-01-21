@@ -1,3 +1,5 @@
 /target
+/.tailwag_data
 /.vscode
 /out
+.env

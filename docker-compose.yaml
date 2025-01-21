@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  postgres:
+    image: "postgres:latest"
+    container_name: postgres
+    env_file: .env.example
+    volumes:
+      - ./.tailwag_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  tailwag_service:
+    build:
+      context: .
+    container_name: tailwag_service
+    restart: always
+    env_file: .env.example
+    ports:
+      - 8081:8081
+    environment:
+      - POSTGRES_ENDPOINT=postgres
+      - POSTGRES_PORT=5432
+    depends_on:
+      - postgres
+
+
