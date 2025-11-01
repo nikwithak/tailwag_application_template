@@ -16,8 +16,8 @@ uuid = { version = "1.11.0", features = ["v4"] }
 ### PATCH TO LOCAL:
 # Uncomment this block to use a local development version of tailwag instead of the published version.
 #
-# [patch.crates-io]
-# tailwag = { path = "../tailwag/" }
+[patch.crates-io]
+tailwag = { path = "../tailwag/" }
 
 
 ### PATCH TO GIT:
