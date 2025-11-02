@@ -4,9 +4,12 @@ mod tasks;
 
 use middleware::log_request::log_request_middleware;
 use rest_endpoints::todo::Todo;
-use tailwag::web::{
-    application::{WebService, WebServiceBuildResponse},
-    extras::comment::Comment,
+use tailwag::{
+    orm::data_manager::local_storage_provider::LocalStorageFileProvider,
+    web::{
+        application::{WebService, WebServiceBuildResponse},
+        extras::comment::Comment,
+    },
 };
 
 use crate::rest_endpoints::todo::TodoFile;
@@ -22,6 +25,10 @@ impl MyTailwagApplication {
             .with_middleware(log_request_middleware) // Middleware are executed top down - each one wraps the next. Use middleware to handle Request pre-processing, and Response post-processing.
             .with_task(tasks::echo_request::echo_request_task) // Tasks can receive messages to queue for processing. Experimental: Use with caution
             .with_static_files() // A built-in extra, for serving files from the `./static` directory. Markdown is rendered to HTML.
+            .with_server_data(
+                LocalStorageFileProvider::new("files")
+                    .expect("Unable to create LocalStorageFileProvider"),
+            )
             .build_service()
     }
 }
